@@ -18,6 +18,7 @@ def main():
 	initialForce = InitialForce.get()
 	angle = Angle.get()
 	gravity = Gravity.get()
+	delta = Delta.get()
 
 	# cheak values
 	if airResistance == "" and option != "Air Resistance":
@@ -28,6 +29,8 @@ def main():
 		return messagebox.showwarning("Error","Must enter angle!")
 	if gravity == "" and option != "Gravity":
 		return messagebox.showwarning("Error","Must enter gravity!")
+	if delta == "" and option != "Delta":
+		return messagebox.showwarning("Error","Must enter delta!")	
 
 	#graph it
 	plt.ion()
@@ -43,14 +46,14 @@ root.title("Projecitle Grapher")
  
 # Add a grid
 mainframe = Frame(root)
-mainframe.grid(column=0,row=0, sticky=(N,W,E,S) )
+mainframe.grid(column=0, row=0, sticky=(N,W,E,S) )
 mainframe.columnconfigure(0, weight=1)
 mainframe.rowconfigure(0, weight=1)
-mainframe.pack(pady = 10, padx = 10)
+mainframe.pack(pady=10, padx=10)
 
 # Enter option 
 Option = StringVar(root)
-choices = ['Air Resistance','Initial Force','Angle','Gravity']
+choices = ['Air Resistance','Initial Force','Angle','Gravity','Delta']
 popupMenu = OptionMenu(mainframe, Option, *choices)
 popupMenu.config(width=UI_WIDTH)
 popupMenu.grid(row = 2, column =1)
@@ -77,7 +80,12 @@ Label(mainframe, text="Gravity").grid(row = 9, column = 1)
 Gravity = Entry(mainframe, width=UI_WIDTH)
 Gravity.grid(row = 10, column = 1)
 
+#enter delta
+Label(mainframe, text="Delta").grid(row = 11, column = 1)
+Gravity = Entry(mainframe, width=UI_WIDTH)
+Gravity.grid(row = 12, column = 1)
+
 #graph it
-Button(mainframe, text="Graph It!", command=main).grid(row = 12, column = 1)
+Button(mainframe, text="Graph It!", command=main).grid(row = 13, column = 1)
 
 root.mainloop()
